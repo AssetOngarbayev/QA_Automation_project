@@ -9,8 +9,16 @@ public class Main {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.google.com/");
-        System.out.println("Hello");
-        driver.close();
-        
+        String expectedTitle = "Google";
+        String actualTitle = driver.getTitle();
+
+        if (actualTitle.equals(expectedTitle)) {
+            System.out.println("Test Passed!");
+        } else {
+            System.out.println("Test Failed");
+        }
+
+        // close the browser
+        driver.quit();
     }
 }
