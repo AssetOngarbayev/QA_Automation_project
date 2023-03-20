@@ -11,6 +11,7 @@ public class Main {
         System.setProperty("webdriver.http.factory", "jdk-http-client");
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
+        driver.manage().window().maximize();
         String expectedTitle = "Swag Labs";
         String actualTitle = driver.getTitle();
 

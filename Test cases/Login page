@@ -12,7 +12,7 @@
     Verify that an error message is displayed stating "Username and password do not match any user in this service".
 5. Empty username and password - Test that an error message is displayed when both the username and password fields are left empty.
     Leave the username and password fields empty
-    Verify that an error message is displayed stating "Username is required" and "Password is required".
+    Verify that an error message is displayed stating "Username is required".
 6. Empty username - Test that an error message is displayed when the username field is left empty.
     Enter a valid password and leave the username field empty
     Verify that an error message is displayed stating "Username is required".
