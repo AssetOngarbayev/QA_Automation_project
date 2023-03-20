@@ -1,0 +1,24 @@
+1. Check that application is opened and the title is correct.
+    Open the https://www.saucedemo.com.
+    Check the tat title is "Swag Labs".
+2. Valid login credentials - Test that a user with a valid username and password is able to login successfully.
+    Enter valid username and password
+    Verify that user is logged in and redirected to the inventory page.
+3. Invalid username - Test that an error message is displayed when an invalid username is entered.
+    Enter an invalid username
+    Verify that an error message is displayed stating "Username and password do not match any user in this service".
+4. Invalid password - Test that an error message is displayed when an invalid password is entered.
+    Enter a valid username and an invalid password
+    Verify that an error message is displayed stating "Username and password do not match any user in this service".
+5. Empty username and password - Test that an error message is displayed when both the username and password fields are left empty.
+    Leave the username and password fields empty
+    Verify that an error message is displayed stating "Username is required" and "Password is required".
+6. Empty username - Test that an error message is displayed when the username field is left empty.
+    Enter a valid password and leave the username field empty
+    Verify that an error message is displayed stating "Username is required".
+7. Empty password - Test that an error message is displayed when the password field is left empty.
+    Enter a valid username and leave the password field empty
+    Verify that an error message is displayed stating "Password is required".
+8. Locked-out user - Test that an error message is displayed when a locked-out user tries to log in.
+    Enter a valid username and password for a locked-out user
+    Verify that an error message is displayed stating "Sorry, this user has been locked out."
