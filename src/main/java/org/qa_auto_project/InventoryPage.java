@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class InventoryPage {
     private WebDriver driver;
@@ -51,6 +52,7 @@ public class InventoryPage {
         WebElement firstProduct = driver.findElement(By.className("inventory_item_name"));
         String firstProductName = firstProduct.getText();
         Assert.assertEquals(firstProductName, "Sauce Labs Onesie", "Products not sorted by price");
+        //driver.close();
     }
 
     @Test
@@ -61,6 +63,7 @@ public class InventoryPage {
 
         WebElement productTitle = driver.findElement(By.className("inventory_details_name"));
         Assert.assertEquals(productTitle.getText(), "Sauce Labs Onesie", "Product details not displayed");
+        //driver.close();
     }
 
     @Test
@@ -71,6 +74,14 @@ public class InventoryPage {
         Thread.sleep(3000);
         WebElement cartItemsCount = driver.findElement(By.className("shopping_cart_badge"));
         Assert.assertEquals(cartItemsCount.getText(), "1", "Product not added to cart");
+        WebElement removeFromCartButton = driver.findElement(By.id("remove-sauce-labs-backpack"));
+        removeFromCartButton.click();
+        Thread.sleep(3000);
+        int size = driver.findElements(By.className("shopping_cart_badge")).size();
+        if(size==0){
+            Assert.assertTrue(true);
+        }
+
     }
 
     @AfterClass

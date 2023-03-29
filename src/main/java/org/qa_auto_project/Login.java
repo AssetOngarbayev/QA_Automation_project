@@ -94,6 +94,7 @@ public class Login {
             System.out.println("Test Case 4 Failed: Error message is not displayed for locked-out user.");
         }
         Thread.sleep(2000);
+
         // Test Case 5: Valid login credentials
         // enter valid username and password
         driver.get("https://www.saucedemo.com/");
@@ -116,6 +117,7 @@ public class Login {
         } else {
             System.out.println("Test Case 5 Failed: User was not redirected to the inventory page.");
         }
+
         // close the browser
         driver.quit();
     }

@@ -10,3 +10,6 @@ Product Details - Test that the product details page loads correctly and display
 Add to Cart - Test that the "Add to Cart" button works correctly and adds the selected product to the shopping cart.
     1.Click on the "Add to Cart" button for a product
     2.Verify that the selected product is added to the shopping cart and the cart icon in the top right corner of the page is updated to reflect the number of items in the cart.
+Remove from Cart - Test that the "Remove" button works correctly and removes the selected product from the shopping cart.
+    1. Click on the "Remove" button for a product.
+    2. Verify that the selected product is removed from the shopping cart and the cart icon in the top right corner of the page is updated to reflect the number of items in the cart.
