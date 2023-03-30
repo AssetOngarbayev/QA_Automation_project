@@ -67,7 +67,7 @@ public class InventoryPage {
     }
 
     @Test
-    public void testAddToCart() throws InterruptedException {
+    public void testAddToCartAndRemove() throws InterruptedException {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
         addToCartButton.click();

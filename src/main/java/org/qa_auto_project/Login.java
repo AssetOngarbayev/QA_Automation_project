@@ -36,7 +36,7 @@ public class Login {
             System.out.println("Test Case 1 Failed: Error message is not displayed for invalid username.");
         }
 
-        // Test Case 3: Invalid password
+        // Test Case 2: Invalid password
         usernameInput.clear();
         passwordInput.clear();
         Thread.sleep(2000);
@@ -75,7 +75,37 @@ public class Login {
         }
         Thread.sleep(2000);
 
-        // Test Case 4: Locked-out user
+        // Test Case 4: Empty username
+        WebElement passwordInput2 = driver.findElement(By.id("password"));
+        passwordInput2.sendKeys("secret_sauce");
+        loginButton2.click();
+        actualErrorMessage = errorMessage.getText();
+        if (actualErrorMessage.equals(expectedErrorMessage)) {
+            System.out.println("Test Case 4 Passed: Error message is displayed for Empty username.");
+        } else {
+            System.out.println("Test Case 4 Failed: Error message is not displayed for Empty username.");
+        }
+
+        // Test Case 5: Empty password
+        driver.navigate().refresh();
+        WebElement usernameInput2 = driver.findElement(By.id("user-name"));
+        WebElement loginButtonSecond = driver.findElement(By.id("login-button"));
+
+        usernameInput2.sendKeys("standard_user");
+        Thread.sleep(2000);
+        loginButtonSecond.click();
+        Thread.sleep(2000);
+        WebElement errorMessage2 = driver.findElement(By.tagName("h3"));
+        String expectedErrorMessage2 = "Epic sadface: Password is required";
+        String actualErrorMessage2 = errorMessage2.getText();
+        if (actualErrorMessage2.equals(expectedErrorMessage2)) {
+            System.out.println("Test Case 5 Passed: Error message is displayed for Empty password.");
+        } else {
+            System.out.println("Test Case 5 Failed: Error message is not displayed for Empty password.");
+        }
+
+
+        // Test Case 6: Locked-out user
         driver.get("https://www.saucedemo.com/");
         WebElement usernameInput3 = driver.findElement(By.id("user-name"));
         WebElement passwordInput3 = driver.findElement(By.id("password"));
@@ -89,13 +119,13 @@ public class Login {
         expectedErrorMessage = "Epic sadface: Sorry, this user has been locked out.";
         actualErrorMessage = errorMessage.getText();
         if (actualErrorMessage.equals(expectedErrorMessage)) {
-            System.out.println("Test Case 4 Passed: Error message is displayed for locked-out user.");
+            System.out.println("Test Case 6 Passed: Error message is displayed for locked-out user.");
         } else {
-            System.out.println("Test Case 4 Failed: Error message is not displayed for locked-out user.");
+            System.out.println("Test Case 6 Failed: Error message is not displayed for locked-out user.");
         }
         Thread.sleep(2000);
 
-        // Test Case 5: Valid login credentials
+        // Test Case 7: Valid login credentials
         // enter valid username and password
         driver.get("https://www.saucedemo.com/");
         driver.manage().window().maximize();
@@ -113,9 +143,9 @@ public class Login {
 
 
         if (actualUrl.equals(expectedUrl)) {
-            System.out.println("Test Case 5 Passed: User is logged in and redirected to the inventory page.");
+            System.out.println("Test Case 7 Passed: User is logged in and redirected to the inventory page.");
         } else {
-            System.out.println("Test Case 5 Failed: User was not redirected to the inventory page.");
+            System.out.println("Test Case 7 Failed: User was not redirected to the inventory page.");
         }
 
         // close the browser
