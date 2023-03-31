@@ -79,6 +79,27 @@ public class InventoryPage {
         }
     }
 
+    @Test(priority = 4)
+    public void menuButton() throws InterruptedException {
+        WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
+        menuButton.click();
+        WebElement itemList = driver.findElement(By.className("bm-item-list"));
+        Thread.sleep(2000);
+        Assert.assertTrue(itemList.isDisplayed());
+    }
+
+    @Test(priority = 5)
+    public void allItemButton() throws InterruptedException {
+        WebElement productLink = driver.findElement(By.xpath("//div[@class='inventory_item_name'][text()='Sauce Labs Onesie']"));
+        productLink.click();
+        WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
+        menuButton.click();
+        Thread.sleep(2000);
+        WebElement allItemButton = driver.findElement(By.id("inventory_sidebar_link"));
+        allItemButton.click();
+        testPageLoad();
+    }
+
     @AfterClass
     public void tearDown() {
         driver.quit();

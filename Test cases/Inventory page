@@ -13,3 +13,10 @@
 5.Remove from Cart - Test that the "Remove" button works correctly and removes the selected product from the shopping cart.
     1. Click on the "Remove" button for a product.
     2. Verify that the selected product is removed from the shopping cart and the cart icon in the top right corner of the page is updated to reflect the number of items in the cart.
+6. Check that left side menu is opened
+    1. Click on the Menu button.
+    2. Verify that item list is displayed.
+7. All items link - Check that user returns to the Main page from other pages.
+    1. Click on a item - Details page is displayed.
+    2. Click on Menu button.
+    3. Click on the All items. - The main page is displayed.
