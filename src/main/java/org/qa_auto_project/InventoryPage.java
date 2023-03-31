@@ -11,8 +11,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.util.List;
-import java.util.NoSuchElementException;
 
 public class InventoryPage {
     private WebDriver driver;
@@ -33,14 +31,14 @@ public class InventoryPage {
         loginButton4.click();
     }
 
-    @Test
+    @Test(priority = 0)
     public void testPageLoad() throws InterruptedException {
 
         WebElement productsContainer = driver.findElement(By.className("inventory_container"));
         Assert.assertTrue(productsContainer.isDisplayed(), "Products container not visible");
     }
 
-    @Test
+    @Test(priority = 1)
     public void testProductSorting() throws InterruptedException {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement sortDropdown = driver.findElement(By.className("product_sort_container"));
@@ -55,7 +53,7 @@ public class InventoryPage {
         //driver.close();
     }
 
-    @Test
+    @Test(priority = 2)
     public void testProductDetails() {
         //driver.get("https://www.saucedemo.com/inventory.html");
         WebElement productLink = driver.findElement(By.xpath("//div[@class='inventory_item_name'][text()='Sauce Labs Onesie']"));
@@ -66,7 +64,7 @@ public class InventoryPage {
         //driver.close();
     }
 
-    @Test
+    @Test(priority = 3)
     public void testAddToCartAndRemove() throws InterruptedException {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
