@@ -18,6 +18,14 @@ public class Login {
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com");
         driver.manage().window().maximize();
+        String expectedTitle = "Swag Labs";
+        String actualTitle = driver.getTitle();
+
+        if (actualTitle.equals(expectedTitle)) {
+            System.out.println("Test Case 0 Passed: Title is correct.");
+        } else {
+            System.out.println("Test Case 0 Failed: Title not correct.");
+        }
     }
 
     @Test(priority = 0)

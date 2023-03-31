@@ -50,18 +50,16 @@ public class InventoryPage {
         WebElement firstProduct = driver.findElement(By.className("inventory_item_name"));
         String firstProductName = firstProduct.getText();
         Assert.assertEquals(firstProductName, "Sauce Labs Onesie", "Products not sorted by price");
-        //driver.close();
+
     }
 
     @Test(priority = 2)
     public void testProductDetails() {
-        //driver.get("https://www.saucedemo.com/inventory.html");
         WebElement productLink = driver.findElement(By.xpath("//div[@class='inventory_item_name'][text()='Sauce Labs Onesie']"));
         productLink.click();
 
         WebElement productTitle = driver.findElement(By.className("inventory_details_name"));
         Assert.assertEquals(productTitle.getText(), "Sauce Labs Onesie", "Product details not displayed");
-        //driver.close();
     }
 
     @Test(priority = 3)
@@ -69,17 +67,16 @@ public class InventoryPage {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
         addToCartButton.click();
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         WebElement cartItemsCount = driver.findElement(By.className("shopping_cart_badge"));
         Assert.assertEquals(cartItemsCount.getText(), "1", "Product not added to cart");
         WebElement removeFromCartButton = driver.findElement(By.id("remove-sauce-labs-backpack"));
         removeFromCartButton.click();
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         int size = driver.findElements(By.className("shopping_cart_badge")).size();
         if(size==0){
             Assert.assertTrue(true);
         }
-
     }
 
     @AfterClass
