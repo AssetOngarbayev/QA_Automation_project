@@ -98,6 +98,14 @@ public class InventoryPage {
         WebElement allItemButton = driver.findElement(By.id("inventory_sidebar_link"));
         allItemButton.click();
         testPageLoad();
+        WebElement cartButton = driver.findElement(By.className("shopping_cart_link"));
+        cartButton.click();
+        WebElement menuButton2 = driver.findElement(By.id("react-burger-menu-btn"));
+        menuButton2.click();
+        Thread.sleep(2000);
+        WebElement allItemButton2 = driver.findElement(By.id("inventory_sidebar_link"));
+        allItemButton2.click();
+        testPageLoad();
     }
 
     @AfterClass
