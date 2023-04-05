@@ -2,8 +2,14 @@
     1.Navigate to the inventory page
     2.Verify that all elements such as product images, product names, and prices are visible and displayed correctly.
 2.Product Sorting - Test that the product sorting feature works correctly.
-    1.Click on the "Sort" drop-down menu and select a sorting option (e.g. A to Z)
+    1.Click on the "Sort" drop-down menu and select a sorting option - Price (low to high).
     2.Verify that the products are sorted correctly according to the selected option.
+    3.Click on the "Sort" drop-down menu and select a sorting option - Price (high to low).
+    4.Verify that the products are sorted correctly according to the selected option.
+    5.Click on the "Sort" drop-down menu and select a sorting option - Name (Z to A).
+    6.Verify that the products are sorted correctly according to the selected option.
+    7.Click on the "Sort" drop-down menu and select a sorting option - Name (A to Z).
+    8.Verify that the products are sorted correctly according to the selected option.
 3.Product Details - Test that the product details page loads correctly and displays all relevant information about the product.
     1.Click on a product name or image to go to the product details page
     2.Verify that all relevant product information such as name, description, price, and image are displayed correctly.

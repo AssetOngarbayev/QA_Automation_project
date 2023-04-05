@@ -51,6 +51,29 @@ public class InventoryPage {
         String firstProductName = firstProduct.getText();
         Assert.assertEquals(firstProductName, "Sauce Labs Onesie", "Products not sorted by price");
 
+        WebElement sortDropdown2 = driver.findElement(By.className("product_sort_container"));
+        Select selectSort2 = new Select(sortDropdown2);
+        selectSort2.selectByVisibleText("Price (high to low)");
+        Thread.sleep(2000);
+        WebElement firstProduct2 = driver.findElement(By.className("inventory_item_name"));
+        String firstProductName2 = firstProduct2.getText();
+        Assert.assertEquals(firstProductName2, "Sauce Labs Fleece Jacket", "Products not sorted by price");
+
+        WebElement sortDropdown3 = driver.findElement(By.className("product_sort_container"));
+        Select selectSort3 = new Select(sortDropdown3);
+        selectSort3.selectByVisibleText("Name (Z to A)");
+        Thread.sleep(2000);
+        WebElement firstProduct3 = driver.findElement(By.className("inventory_item_name"));
+        String firstProductName3 = firstProduct3.getText();
+        Assert.assertEquals(firstProductName3, "Test.allTheThings() T-Shirt (Red)", "Products not sorted by price");
+
+        WebElement sortDropdown4 = driver.findElement(By.className("product_sort_container"));
+        Select selectSort4 = new Select(sortDropdown4);
+        selectSort4.selectByVisibleText("Name (A to Z)");
+        Thread.sleep(2000);
+        WebElement firstProduct4 = driver.findElement(By.className("inventory_item_name"));
+        String firstProductName4 = firstProduct4.getText();
+        Assert.assertEquals(firstProductName4, "Sauce Labs Backpack", "Products not sorted by price");
     }
 
     @Test(priority = 2)
