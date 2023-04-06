@@ -1,0 +1,8 @@
+<suite name="Suite">
+    <test name="Test">
+        <classes>
+            <class name="org.qa_auto_project.Login"/>
+            <class name="org.qa_auto_project.InventoryPage"/>
+        </classes>
+    </test>>
+</suite>
