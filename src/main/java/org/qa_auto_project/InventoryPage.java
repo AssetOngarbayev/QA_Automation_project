@@ -130,6 +130,16 @@ public class InventoryPage {
         allItemButton2.click();
         testPageLoad();
     }
+    @Test(priority = 6)
+    public void aboutButton() throws InterruptedException {
+        WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
+        menuButton.click();
+        Thread.sleep(2000);
+        WebElement aboutButton = driver.findElement(By.id("about_sidebar_link"));
+        aboutButton.click();
+        String sauslabSite = driver.getCurrentUrl();
+        Assert.assertEquals(sauslabSite, "https://saucelabs.com/");
+    }
 
     @AfterClass
     public void tearDown() {
