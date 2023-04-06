@@ -140,6 +140,29 @@ public class InventoryPage {
         String sauslabSite = driver.getCurrentUrl();
         Assert.assertEquals(sauslabSite, "https://saucelabs.com/");
     }
+    @Test(priority = 7)
+    public void resetAppStateButton() throws InterruptedException {
+        driver.get("https://www.saucedemo.com/inventory.html");
+        WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
+        addToCartButton.click();
+        WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
+        menuButton.click();
+        Thread.sleep(2000);
+        WebElement resetAppStateButton = driver.findElement(By.id("reset_sidebar_link"));
+        resetAppStateButton.click();
+        Thread.sleep(1000);
+        int size = driver.findElements(By.className("shopping_cart_badge")).size();
+        if(size==0){
+            Assert.assertTrue(true);
+        }
+    }
+    @Test(priority = 8)
+    public void logoutButton() throws InterruptedException {
+        WebElement logoutButton = driver.findElement(By.id("logout_sidebar_link"));
+        logoutButton.click();
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, "https://www.saucedemo.com/");
+    }
 
     @AfterClass
     public void tearDown() {
