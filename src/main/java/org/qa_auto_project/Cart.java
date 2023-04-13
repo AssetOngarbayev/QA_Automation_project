@@ -77,12 +77,65 @@ public class Cart {
     }
 
     @Test(priority = 4)
+    public void validationErrors() throws InterruptedException{
+        // Enter invalid input in First Name field
+        WebElement firstNameField = driver.findElement(By.id("first-name"));
+        firstNameField.sendKeys("");
+
+        // Enter invalid input in Last Name field
+        WebElement lastNameField = driver.findElement(By.id("last-name"));
+        lastNameField.sendKeys("test");
+
+        // Enter invalid input in Zip Code field
+        WebElement zipCodeField = driver.findElement(By.id("postal-code"));
+        zipCodeField.sendKeys("test");
+
+        // Click on Continue button
+        WebElement continueButton = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
+        continueButton.click();
+        Thread.sleep(1000);
+        // Verify that error messages are displayed for all invalid inputs
+        WebElement firstNameError = driver.findElement(By.tagName("h3"));
+        String errorFirstName = firstNameError.getText();
+        Assert.assertEquals(errorFirstName, "Error: First Name is required");
+
+        //Enter invalid Last name
+        driver.navigate().refresh();
+        WebElement firstNameField2 = driver.findElement(By.id("first-name"));
+        firstNameField2.sendKeys("test");
+        WebElement zipCodeField2 = driver.findElement(By.id("postal-code"));
+        zipCodeField2.sendKeys("test");
+        WebElement continueButton2 = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
+        continueButton2.click();
+        Thread.sleep(1000);
+        WebElement lastNameError = driver.findElement(By.tagName("h3"));
+        String errorLastName = lastNameError.getText();
+        Assert.assertEquals(errorLastName, "Error: Last Name is required");
+
+        // Enter invalid input in Zip Code field
+        //WebElement zipCodeField = driver.findElement(By.id("postal-code"));
+        driver.navigate().refresh();
+        WebElement firstNameField3 = driver.findElement(By.id("first-name"));
+        firstNameField3.sendKeys("test");
+        WebElement lastNameField3 = driver.findElement(By.id("last-name"));
+        lastNameField3.sendKeys("test");
+        WebElement continueButton3 = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
+        continueButton3.click();
+        Thread.sleep(1000);
+        WebElement zipError = driver.findElement(By.tagName("h3"));
+        String errorZip = zipError.getText();
+        Assert.assertEquals(errorZip, "Error: Postal Code is required");
+        Thread.sleep(2000);
+
+    }
+    @Test(priority = 5)
     public void cancelCheckout() throws InterruptedException {
         WebElement cancelButton = driver.findElement(By.id("cancel"));
         cancelButton.click();
         String cartPage = driver.getCurrentUrl();
         Assert.assertEquals(cartPage,"https://www.saucedemo.com/cart.html");
     }
+
 
     @AfterClass
     public void tearDown() {

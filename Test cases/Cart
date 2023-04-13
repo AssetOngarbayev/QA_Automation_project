@@ -10,5 +10,12 @@
     1.Click on the Add to cart button on a product.
     2.Click on the Cart button.
     3.Click on the Checkout button.
-5. Check the Cancel button on Checkout page.
+5. Check the validation errors on the Checkout page.
+    1.Leave empty the First Name field.
+    2.Click on the Continue button.
+    3.Leave empty the Last Name field.
+    4.Click on the Continue button.
+    5.Leave empty the Zip code field.
+    6.Click on the Continue button.
+6. Check the Cancel button on Checkout page.
     1.Click on Cancel button.
