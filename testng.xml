@@ -3,6 +3,7 @@
         <classes>
             <class name="org.qa_auto_project.Login"/>
             <class name="org.qa_auto_project.InventoryPage"/>
+            <class name="org.qa_auto_project.Cart"/>
         </classes>
     </test>>
 </suite>

@@ -32,3 +32,9 @@
 8. About - Check that user redirected to the https://saucelabs.com site
     1. Click on the Menu button.
     2. Click on About button.
+9. Reset App State - Check that App state is resetted
+    1. Click on the Menu button.
+    2. Click on the Reset App State button.
+10. Logout - Check that user is logged out.
+    1. Click on the Menu button.
+    2. Click on the Logout buttton.
