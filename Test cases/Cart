@@ -19,3 +19,20 @@
     6.Click on the Continue button.
 6. Check the Cancel button on Checkout page.
     1.Click on Cancel button.
+7. Check Continue button with correct values.
+    1.Click on the Checkout button.
+    2.Fill in First name field.
+    3.Fill in Last name field.
+    4.Fill in Zip code.
+    5.Click on the Continue button.
+8. Check Cancel button on Overview page.
+    1.Click Cancel button on Checkout Overview page.
+9.Check the Finishing a purchase
+    1.Click the cart button.
+    2.Click the Checkout button.
+    3.Fill in required fields.
+    4.Click the Continue button.
+    5.Click the Finish button.
+10. Check the Back home button.
+    1.Click on the Back home button.
+

@@ -125,7 +125,7 @@ public class Cart {
         WebElement zipError = driver.findElement(By.tagName("h3"));
         String errorZip = zipError.getText();
         Assert.assertEquals(errorZip, "Error: Postal Code is required");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
 
     }
     @Test(priority = 5)
@@ -136,6 +136,70 @@ public class Cart {
         Assert.assertEquals(cartPage,"https://www.saucedemo.com/cart.html");
     }
 
+    @Test(priority = 6)
+    public void continueChekout() throws InterruptedException{
+        WebElement checkoutButton = driver.findElement(By.id("checkout"));
+        checkoutButton.click();
+        WebElement firstNameField = driver.findElement(By.id("first-name"));
+        firstNameField.sendKeys("First");
+
+        // Enter valid input in Last Name field
+        WebElement lastNameField = driver.findElement(By.id("last-name"));
+        lastNameField.sendKeys("Last");
+
+        // Enter invalid input in Zip Code field
+        WebElement zipCodeField = driver.findElement(By.id("postal-code"));
+        zipCodeField.sendKeys("050006");
+
+        // Click on Continue button
+        WebElement continueButton = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
+        continueButton.click();
+        Thread.sleep(1000);
+        String chekoutOverviewPage = "https://www.saucedemo.com/checkout-step-two.html";
+        Assert.assertEquals(driver.getCurrentUrl(), chekoutOverviewPage);
+    }
+
+    @Test(priority = 7)
+    public void cancelCheckoutOverview() throws InterruptedException {
+        WebElement cancelButton = driver.findElement(By.id("cancel"));
+        cancelButton.click();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+    }
+
+    @Test(priority = 8)
+    public void finishChekout() throws InterruptedException{
+        WebElement cartItemsCount = driver.findElement(By.className("shopping_cart_link"));
+        cartItemsCount.click();
+        WebElement checkoutButton = driver.findElement(By.id("checkout"));
+        checkoutButton.click();
+        WebElement firstNameField = driver.findElement(By.id("first-name"));
+        firstNameField.sendKeys("First");
+
+        // Enter valid input in Last Name field
+        WebElement lastNameField = driver.findElement(By.id("last-name"));
+        lastNameField.sendKeys("Last");
+
+        // Enter invalid input in Zip Code field
+        WebElement zipCodeField = driver.findElement(By.id("postal-code"));
+        zipCodeField.sendKeys("050006");
+
+        // Click on Continue button
+        WebElement continueButton = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
+        continueButton.click();
+
+        WebElement finishButton = driver.findElement(By.id("finish"));
+        finishButton.click();
+        Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/checkout-complete.html");
+        Assert.assertEquals(driver.findElement(By.className("complete-header")).getText(), "Thank you for your order!");
+        Thread.sleep(1000);
+    }
+
+    @Test(priority = 9)
+    public void backHomeButton() throws InterruptedException{
+        WebElement backHomeButton = driver.findElement(By.id("back-to-products"));
+        backHomeButton.click();
+        Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
+    }
 
     @AfterClass
     public void tearDown() {
