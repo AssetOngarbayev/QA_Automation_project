@@ -8,6 +8,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Login {
     private WebDriver driver;
 
@@ -18,6 +20,7 @@ public class Login {
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com");
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3000));
         String expectedTitle = "Swag Labs";
         String actualTitle = driver.getTitle();
 
@@ -29,7 +32,7 @@ public class Login {
     }
 
     @Test(priority = 0)
-    public void invalidUsername() throws InterruptedException {
+    public void invalidUsername() {
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement passwordInput = driver.findElement(By.id("password"));
         WebElement loginButton = driver.findElement(By.id("login-button"));
@@ -49,7 +52,7 @@ public class Login {
         }
     }
     @Test(priority = 1)
-    public void invalidPassword() throws InterruptedException {
+    public void invalidPassword() {
         driver.navigate().refresh();
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement passwordInput = driver.findElement(By.id("password"));
@@ -70,7 +73,7 @@ public class Login {
         }
     }
     @Test(priority = 2)
-    public void emptyUsernameAndPassword() throws InterruptedException {
+    public void emptyUsernameAndPassword() {
         driver.navigate().refresh();
         WebElement loginButton = driver.findElement(By.id("login-button"));
         loginButton.click();
@@ -84,7 +87,7 @@ public class Login {
         }
     }
     @Test(priority = 3)
-    public void emptyUsername() throws InterruptedException {
+    public void emptyUsername() {
         driver.navigate().refresh();
         WebElement passwordInput = driver.findElement(By.id("password"));
         WebElement loginButton = driver.findElement(By.id("login-button"));
@@ -101,7 +104,7 @@ public class Login {
     }
 
     @Test(priority = 4)
-    public void emptyPassword() throws InterruptedException {
+    public void emptyPassword() {
         driver.navigate().refresh();
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement loginButton = driver.findElement(By.id("login-button"));
@@ -118,7 +121,7 @@ public class Login {
     }
 
     @Test(priority = 5)
-    public void lockedUser() throws InterruptedException {
+    public void lockedUser() {
         driver.navigate().refresh();
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement passwordInput = driver.findElement(By.id("password"));
@@ -137,7 +140,7 @@ public class Login {
     }
 
     @Test(priority = 6)
-    public void validLoginCredentials() throws InterruptedException {
+    public void validLoginCredentials() {
         driver.navigate().refresh();
         WebElement usernameInput = driver.findElement(By.id("user-name"));
         WebElement passwordInput = driver.findElement(By.id("password"));

@@ -9,6 +9,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 public class Cart {
     private WebDriver driver;
 
@@ -19,6 +21,7 @@ public class Cart {
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com");
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         WebElement usernameInput4 = driver.findElement(By.id("user-name"));
         WebElement passwordInput4 = driver.findElement(By.id("password"));
         WebElement loginButton4 = driver.findElement(By.id("login-button"));
@@ -29,7 +32,7 @@ public class Cart {
     }
 
     @Test(priority = 1)
-    public void addToCartAndRemove() throws InterruptedException {
+    public void addToCartAndRemove() {
         WebElement product1 = driver.findElement(By.className("inventory_item_name"));
         String productName1 = product1.getText();
         WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
@@ -45,7 +48,7 @@ public class Cart {
         Assert.assertTrue(productInCart2==0);
     }
     @Test(priority = 2)
-    public void continueShopping() throws InterruptedException {
+    public void continueShopping() {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement cartItemsCount = driver.findElement(By.className("shopping_cart_link"));
         cartItemsCount.click();
@@ -56,7 +59,7 @@ public class Cart {
     }
 
     @Test(priority = 3)
-    public void checkoutPage() throws InterruptedException {
+    public void checkoutPage() {
         WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
         addToCartButton.click();
         WebElement cartItemsCount = driver.findElement(By.className("shopping_cart_badge"));
@@ -77,7 +80,7 @@ public class Cart {
     }
 
     @Test(priority = 4)
-    public void validationErrors() throws InterruptedException{
+    public void validationErrors() {
         // Enter invalid input in First Name field
         WebElement firstNameField = driver.findElement(By.id("first-name"));
         firstNameField.sendKeys("");
@@ -93,7 +96,7 @@ public class Cart {
         // Click on Continue button
         WebElement continueButton = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
         continueButton.click();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         // Verify that error messages are displayed for all invalid inputs
         WebElement firstNameError = driver.findElement(By.tagName("h3"));
         String errorFirstName = firstNameError.getText();
@@ -107,7 +110,7 @@ public class Cart {
         zipCodeField2.sendKeys("test");
         WebElement continueButton2 = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
         continueButton2.click();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         WebElement lastNameError = driver.findElement(By.tagName("h3"));
         String errorLastName = lastNameError.getText();
         Assert.assertEquals(errorLastName, "Error: Last Name is required");
@@ -121,15 +124,15 @@ public class Cart {
         lastNameField3.sendKeys("test");
         WebElement continueButton3 = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
         continueButton3.click();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         WebElement zipError = driver.findElement(By.tagName("h3"));
         String errorZip = zipError.getText();
         Assert.assertEquals(errorZip, "Error: Postal Code is required");
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
 
     }
     @Test(priority = 5)
-    public void cancelCheckout() throws InterruptedException {
+    public void cancelCheckout() {
         WebElement cancelButton = driver.findElement(By.id("cancel"));
         cancelButton.click();
         String cartPage = driver.getCurrentUrl();
@@ -137,7 +140,7 @@ public class Cart {
     }
 
     @Test(priority = 6)
-    public void continueChekout() throws InterruptedException{
+    public void continueChekout() {
         WebElement checkoutButton = driver.findElement(By.id("checkout"));
         checkoutButton.click();
         WebElement firstNameField = driver.findElement(By.id("first-name"));
@@ -154,20 +157,20 @@ public class Cart {
         // Click on Continue button
         WebElement continueButton = driver.findElement(By.cssSelector(".btn_primary.cart_button"));
         continueButton.click();
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         String chekoutOverviewPage = "https://www.saucedemo.com/checkout-step-two.html";
         Assert.assertEquals(driver.getCurrentUrl(), chekoutOverviewPage);
     }
 
     @Test(priority = 7)
-    public void cancelCheckoutOverview() throws InterruptedException {
+    public void cancelCheckoutOverview() {
         WebElement cancelButton = driver.findElement(By.id("cancel"));
         cancelButton.click();
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
     }
 
     @Test(priority = 8)
-    public void finishChekout() throws InterruptedException{
+    public void finishChekout() {
         WebElement cartItemsCount = driver.findElement(By.className("shopping_cart_link"));
         cartItemsCount.click();
         WebElement checkoutButton = driver.findElement(By.id("checkout"));
@@ -191,11 +194,11 @@ public class Cart {
         finishButton.click();
         Assert.assertEquals(driver.getCurrentUrl(),"https://www.saucedemo.com/checkout-complete.html");
         Assert.assertEquals(driver.findElement(By.className("complete-header")).getText(), "Thank you for your order!");
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
     }
 
     @Test(priority = 9)
-    public void backHomeButton() throws InterruptedException{
+    public void backHomeButton() {
         WebElement backHomeButton = driver.findElement(By.id("back-to-products"));
         backHomeButton.click();
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");

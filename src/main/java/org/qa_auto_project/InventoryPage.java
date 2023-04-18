@@ -11,6 +11,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 
 public class InventoryPage {
     private WebDriver driver;
@@ -22,6 +24,7 @@ public class InventoryPage {
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com");
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         WebElement usernameInput4 = driver.findElement(By.id("user-name"));
         WebElement passwordInput4 = driver.findElement(By.id("password"));
         WebElement loginButton4 = driver.findElement(By.id("login-button"));
@@ -32,19 +35,19 @@ public class InventoryPage {
     }
 
     @Test(priority = 0)
-    public void testPageLoad() throws InterruptedException {
+    public void testPageLoad() {
 
         WebElement productsContainer = driver.findElement(By.className("inventory_container"));
         Assert.assertTrue(productsContainer.isDisplayed(), "Products container not visible");
     }
 
     @Test(priority = 1)
-    public void testProductSorting() throws InterruptedException {
+    public void testProductSorting() {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement sortDropdown = driver.findElement(By.className("product_sort_container"));
         Select selectSort = new Select(sortDropdown);
         selectSort.selectByVisibleText("Price (low to high)");
-        Thread.sleep(2000);
+
 
         // Assuming the first product is the cheapest
         WebElement firstProduct = driver.findElement(By.className("inventory_item_name"));
@@ -54,7 +57,6 @@ public class InventoryPage {
         WebElement sortDropdown2 = driver.findElement(By.className("product_sort_container"));
         Select selectSort2 = new Select(sortDropdown2);
         selectSort2.selectByVisibleText("Price (high to low)");
-        Thread.sleep(2000);
         WebElement firstProduct2 = driver.findElement(By.className("inventory_item_name"));
         String firstProductName2 = firstProduct2.getText();
         Assert.assertEquals(firstProductName2, "Sauce Labs Fleece Jacket", "Products not sorted by price");
@@ -62,7 +64,6 @@ public class InventoryPage {
         WebElement sortDropdown3 = driver.findElement(By.className("product_sort_container"));
         Select selectSort3 = new Select(sortDropdown3);
         selectSort3.selectByVisibleText("Name (Z to A)");
-        Thread.sleep(2000);
         WebElement firstProduct3 = driver.findElement(By.className("inventory_item_name"));
         String firstProductName3 = firstProduct3.getText();
         Assert.assertEquals(firstProductName3, "Test.allTheThings() T-Shirt (Red)", "Products not sorted by price");
@@ -70,7 +71,6 @@ public class InventoryPage {
         WebElement sortDropdown4 = driver.findElement(By.className("product_sort_container"));
         Select selectSort4 = new Select(sortDropdown4);
         selectSort4.selectByVisibleText("Name (A to Z)");
-        Thread.sleep(2000);
         WebElement firstProduct4 = driver.findElement(By.className("inventory_item_name"));
         String firstProductName4 = firstProduct4.getText();
         Assert.assertEquals(firstProductName4, "Sauce Labs Backpack", "Products not sorted by price");
@@ -86,16 +86,14 @@ public class InventoryPage {
     }
 
     @Test(priority = 3)
-    public void testAddToCartAndRemove() throws InterruptedException {
+    public void testAddToCartAndRemove() {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
         addToCartButton.click();
-        Thread.sleep(1000);
         WebElement cartItemsCount = driver.findElement(By.className("shopping_cart_badge"));
         Assert.assertEquals(cartItemsCount.getText(), "1", "Product not added to cart");
         WebElement removeFromCartButton = driver.findElement(By.id("remove-sauce-labs-backpack"));
         removeFromCartButton.click();
-        Thread.sleep(1000);
         int size = driver.findElements(By.className("shopping_cart_badge")).size();
         if(size==0){
             Assert.assertTrue(true);
@@ -106,18 +104,18 @@ public class InventoryPage {
     public void menuButton() throws InterruptedException {
         WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
         menuButton.click();
+        Thread.sleep(3000);
         WebElement itemList = driver.findElement(By.className("bm-item-list"));
-        Thread.sleep(2000);
         Assert.assertTrue(itemList.isDisplayed());
     }
 
     @Test(priority = 5)
-    public void allItemButton() throws InterruptedException {
+    public void allItemButton() {
         WebElement productLink = driver.findElement(By.xpath("//div[@class='inventory_item_name'][text()='Sauce Labs Onesie']"));
         productLink.click();
         WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
         menuButton.click();
-        Thread.sleep(2000);
+
         WebElement allItemButton = driver.findElement(By.id("inventory_sidebar_link"));
         allItemButton.click();
         testPageLoad();
@@ -125,39 +123,39 @@ public class InventoryPage {
         cartButton.click();
         WebElement menuButton2 = driver.findElement(By.id("react-burger-menu-btn"));
         menuButton2.click();
-        Thread.sleep(2000);
+
         WebElement allItemButton2 = driver.findElement(By.id("inventory_sidebar_link"));
         allItemButton2.click();
         testPageLoad();
     }
     @Test(priority = 6)
-    public void aboutButton() throws InterruptedException {
+    public void aboutButton() {
         WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
         menuButton.click();
-        Thread.sleep(2000);
+
         WebElement aboutButton = driver.findElement(By.id("about_sidebar_link"));
         aboutButton.click();
         String sauslabSite = driver.getCurrentUrl();
         Assert.assertEquals(sauslabSite, "https://saucelabs.com/");
     }
     @Test(priority = 7)
-    public void resetAppStateButton() throws InterruptedException {
+    public void resetAppStateButton() {
         driver.get("https://www.saucedemo.com/inventory.html");
         WebElement addToCartButton = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
         addToCartButton.click();
         WebElement menuButton = driver.findElement(By.id("react-burger-menu-btn"));
         menuButton.click();
-        Thread.sleep(2000);
+
         WebElement resetAppStateButton = driver.findElement(By.id("reset_sidebar_link"));
         resetAppStateButton.click();
-        Thread.sleep(1000);
+
         int size = driver.findElements(By.className("shopping_cart_badge")).size();
         if(size==0){
             Assert.assertTrue(true);
         }
     }
     @Test(priority = 8)
-    public void logoutButton() throws InterruptedException {
+    public void logoutButton() {
         WebElement logoutButton = driver.findElement(By.id("logout_sidebar_link"));
         logoutButton.click();
         String currentUrl = driver.getCurrentUrl();
